@@ -26,6 +26,16 @@ export async function getUserTasks () {
   return axios.get( `${baseUrl}/tasks` );
 }
 
+/**
+ *
+ * @param {string | number} id
+ * @param {object} data
+ * @return {Promise<AxiosResponse<T>>}
+ */
 export async function updateTaskById (id, data) {
   return axios.put( `${baseUrl}/task/${id}`, data );
+}
+
+export async function getUsers () {
+  return axios.get( `${baseUrl}/admin/users` );
 }
