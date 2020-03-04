@@ -38,7 +38,13 @@ function withData (loadData, WrappedComponent) {
     render () {
 
       return (
-        <WrappedComponent {...this.state} {...this.props}/>
+        React.createElement( WrappedComponent, {
+          ...this.props,
+          ...this.state,
+        } )
+
+        /*<WrappedComponent {...this.props} {..this.state}/>*/
+
       );
     }
   };

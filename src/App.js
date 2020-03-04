@@ -1,20 +1,27 @@
-import React                      from 'react';
-import { getUsers, getUserTasks } from './api';
-import './App.css';
-import TasksList                  from './components/TasksList';
-import UsersList                  from './components/UsersList';
-import withData                   from './components/HOC/withData.js';
+import React                            from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-const UsersListWithData = withData( getUsers, UsersList );
-const TasksListWithData = withData( getUserTasks, TasksList );
+import './App.css';
+import Home                             from './pages/Home.js';
+import About                            from './pages/About.js';
+import Contacts                         from './pages/Contacts.js';
 
 export default function (props) {
   return (
-    <div style={{
-      display: 'flex'
-    }}>
-      <TasksListWithData test={124}/>
-      <UsersListWithData abrakadabra={'MAGIC'}/>
-    </div>
+
+    <BrowserRouter>
+      <Switch>
+        <Route exact path='/'>
+          <Home/>
+        </Route>
+        <Route path='/about'>
+          <About/>
+        </Route>
+        <Route path='/contacts'>
+          <Contacts/>
+        </Route>
+      </Switch>
+    </BrowserRouter>
+
   );
 };
