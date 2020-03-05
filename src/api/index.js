@@ -1,41 +1,21 @@
 import axios from 'axios';
 
-const baseUrl = 'http://192.168.0.106:3000/api';
+export const BASE_URL = 'http://192.168.0.106:3000/api';
 
 axios.interceptors.request.use( function (config) {
-  config.headers['authorization'] = '6';
+
   return config;
 }, function (error) {
   return Promise.reject( error );
 } );
 
-/**
- * send request to create Task instance
- * @param task
- * @return {Promise<AxiosResponse<T>>}
- */
-export async function createTask (task) {
-  return axios.post( `${baseUrl}/task`, task );
-}
+axios.interceptors.response.use( null, error => {
 
-/**
- *
- * @return {Promise<AxiosResponse<T>>}
- */
-export async function getUserTasks () {
-  return axios.get( `${baseUrl}/tasks` );
-}
-
-/**
- *
- * @param {string | number} id
- * @param {object} data
- * @return {Promise<AxiosResponse<T>>}
- */
-export async function updateTaskById (id, data) {
-  return axios.put( `${baseUrl}/task/${id}`, data );
-}
-
-export async function getUsers () {
-  return axios.get( `${baseUrl}/admin/users` );
-}
+  alert( 'Error' );
+  switch (401) {
+    case 401:
+      console.log( '401 error' );
+      break;
+  }
+  return Promise.reject( error );
+} );

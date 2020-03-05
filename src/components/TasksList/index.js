@@ -1,7 +1,9 @@
-import React     from 'react';
-import PropTypes from 'prop-types';
+import React            from 'react';
+import PropTypes        from 'prop-types';
+import withData         from '../HOC/withData.js';
+import { getUserTasks } from '../../api/taskController.js';
 
-function TasksList (props) {
+const TasksList = (props) => {
 
   const { tasks, isFetching } = props;
 
@@ -15,7 +17,7 @@ function TasksList (props) {
       }
     </ol>
   );
-}
+};
 
 TasksList.propTypes = {
   tasks: PropTypes.arrayOf( PropTypes.shape( {
@@ -32,4 +34,4 @@ TasksList.defaultProps = {
   tasks: [],
 };
 
-export default TasksList;
+export default withData( getUserTasks, TasksList );
